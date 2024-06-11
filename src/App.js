@@ -29,12 +29,19 @@ class App extends Component {
     }
 
     displayOperands(operands) {
-        let all = "";
-        let comma = "";
+        let required = [];
+        let optional = [];
+ 
         for (let i = 0; i < operands.length; i++) {
-            all += comma + operands[i].name;
-            comma = ",";
+         if (operands[i].optional) {
+             optional.push("[," + operands[i].name + "]");
+         } else {
+             required.push(operands[i].name);
+         }
         }
+        let allRequired = required.join(",");
+        let allOptional = optional.join("");
+        let all = allRequired + allOptional;
         return all;
     }
 
